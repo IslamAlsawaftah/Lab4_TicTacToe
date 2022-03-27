@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Lab04_TicTacToe.Classes
 {
-	class Game
+	public class Game
 	{
-		public Player PlayerOne { get; set; }
+		public Player PlayerOne { get; set; } // auto implemented properties
 		public Player PlayerTwo { get; set; }
 		public Player Winner { get; set; }
 		public Board Board { get; set; }
@@ -33,7 +33,7 @@ namespace Lab04_TicTacToe.Classes
 
 			//TODO: Complete this method and utilize the rest of the class structure to play the game.
 
-            /*
+			/*
              * Complete this method by constructing the logic for the actual playing of Tic Tac Toe. 
              * 
              * A few things to get you started:
@@ -47,6 +47,42 @@ namespace Lab04_TicTacToe.Classes
 
             Use any and all pre-existing methods in this program to help construct the method logic. 
              */
+			int turn = 0;
+			Board.DisplayBoard(); // display board
+			bool WhosePlay = true; // check whoes play 
+			PlayerOne.IsTurn = true; // it is player one turn
+			while (WhosePlay)
+            {
+				if (turn >= 9)
+                {
+					return Winner;
+                }
+				else if (PlayerOne.IsTurn)
+				{
+					PlayerOne.TakeTurn(Board);
+					if (CheckForWinner(Board))
+					{
+						Winner = PlayerOne;
+						WhosePlay = false;
+					}
+					turn++;
+				}
+				else if (PlayerTwo.IsTurn)
+				{
+					PlayerTwo.TakeTurn(Board);
+					if (CheckForWinner(Board))
+					{
+						Winner = PlayerTwo;
+						WhosePlay = false;
+					}
+					turn++;
+				}
+				//Console.Clear();
+				Board.DisplayBoard();
+				SwitchPlayer();
+				NextPlayer();
+			}
+			return Winner;
 		}
 
 
@@ -55,20 +91,21 @@ namespace Lab04_TicTacToe.Classes
 		/// </summary>
 		/// <param name="board">current state of the board</param>
 		/// <returns>if winner exists</returns>
+        
 		public bool CheckForWinner(Board board)
 		{
 			int[][] winners = new int[][]
 			{
-				new[] {1,2,3},
-				new[] {4,5,6},
-				new[] {7,8,9},
+				new[] {1,2,3}, //0
+				new[] {4,5,6}, //1
+				new[] {7,8,9}, //2
 
-				new[] {1,4,7},
-				new[] {2,5,8},
-				new[] {3,6,9},
+				new[] {1,4,7}, //3
+				new[] {2,5,8}, //4
+				new[] {3,6,9}, //5
 
-				new[] {1,5,9},
-				new[] {3,5,7}
+				new[] {1,5,9}, //6
+				new[] {3,5,7} //7
 			};
 
 			// Given all the winning conditions, Determine the winning logic. 
@@ -84,6 +121,10 @@ namespace Lab04_TicTacToe.Classes
 
 				// TODO:  Determine a winner has been reached. 
 				// return true if a winner has been reached. 
+				if(a==b &&b==c)
+                {
+					return true;
+                }
 			
 			}
 
