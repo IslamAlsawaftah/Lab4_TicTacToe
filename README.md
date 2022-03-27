@@ -5,9 +5,9 @@
 ### if x is repeated 3 times in rows or columns or diagonals it will return congrats message and winner name, if there is no winner it will return draw no winner 
 
 ### How to run program
-1- After cloneing project to your device 
+1- Clone project to your device 
 
-2- run program using  Debug > Start Without Debugging or ctrl + F5 and start the play
+2- Run program using  Debug > Start Without Debugging or ctrl + F5 and start the play
 
 ### How to use program
 
