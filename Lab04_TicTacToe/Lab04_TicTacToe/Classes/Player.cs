@@ -16,6 +16,7 @@ namespace Lab04_TicTacToe.Classes
 		/// Flag to determine if it is the user's turn
 		/// </summary>
 		public bool IsTurn { get; set; }
+		public bool error = false;
 
 
 		public Position GetPosition(Board board)
@@ -59,12 +60,14 @@ namespace Lab04_TicTacToe.Classes
 
 			Position position = GetPosition(board);
 
-			if (Int32.TryParse(board.GameBoard[position.Row, position.Column], out int _))
+			if (Int32.TryParse(board.GameBoard[position.Row, position.Column], out int _)) // 0 0
 			{
 				board.GameBoard[position.Row, position.Column] = Marker;
+				error = false;
 			}
 			else
 			{
+				error = true;
 				Console.WriteLine("This space is already occupied");
 			}
 		}

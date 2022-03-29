@@ -60,6 +60,9 @@ namespace Lab04_TicTacToe.Classes
 				else if (PlayerOne.IsTurn)
 				{
 					PlayerOne.TakeTurn(Board);
+					while (PlayerOne.error) {
+						PlayerOne.TakeTurn(Board);
+					}
 					if (CheckForWinner(Board))
 					{
 						Winner = PlayerOne;
@@ -70,7 +73,11 @@ namespace Lab04_TicTacToe.Classes
 				else if (PlayerTwo.IsTurn)
 				{
 					PlayerTwo.TakeTurn(Board);
-					if (CheckForWinner(Board))
+					while (PlayerTwo.error)
+					{
+						PlayerTwo.TakeTurn(Board);
+					}
+						if (CheckForWinner(Board))
 					{
 						Winner = PlayerTwo;
 						WhosePlay = false;
@@ -78,7 +85,11 @@ namespace Lab04_TicTacToe.Classes
 					turn++;
 				}
 				//Console.Clear();
+
+
 				Board.DisplayBoard();
+
+
 				SwitchPlayer();
 				NextPlayer();
 			}
